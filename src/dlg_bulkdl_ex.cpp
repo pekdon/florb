@@ -4,7 +4,7 @@
 #include <algorithm>
 #include "settings.hpp"
 #include "utils.hpp"
-#include "fluid/dlg_bulkdl.hpp"
+#include "dlg_bulkdl.h"
 
 void dlg_bulkdl::create_ex()
 {

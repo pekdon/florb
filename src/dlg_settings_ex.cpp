@@ -1,3 +1,5 @@
+#include "config.h"
+
 #include <sstream>
 #include <iostream>
 #include <FL/Fl_Color_Chooser.H>
@@ -5,8 +7,8 @@
 #include "settings.hpp"
 #include "utils.hpp"
 #include "unit.hpp"
-#include "fluid/dlg_settings.hpp"
-#include "fluid/dlg_tileserver.hpp"
+#include "dlg_settings.h"
+#include "dlg_tileserver.h"
 
 void dlg_settings::create_ex()
 {
@@ -231,7 +233,13 @@ void dlg_settings::tab_gpsd_setup_ex()
     m_input_server->value(m_cfggpsd.host().c_str());
     m_input_port->value(m_cfggpsd.port().c_str());
 
-    bool en = m_cfggpsd.enabled();
+    bool en;
+#ifdef HAVE_LIBGPS
+    en = m_cfggpsd.enabled();
+#else // ! HAVE_LIBGPS
+    en = false;
+    m_chkbtn_enable->deactivate();
+#endif // HAVE_LIBGPS
 
     if (en)
     {

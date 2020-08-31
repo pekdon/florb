@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include "utils.hpp"
-#include "fluid/dlg_txtdisp.hpp"
+#include "dlg_txtdisp.h"
 
 void dlg_txtdisp::create_ex()
 {

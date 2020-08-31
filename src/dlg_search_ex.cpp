@@ -4,7 +4,7 @@
 #include <clocale>
 #include <limits>
 #include "utils.hpp"
-#include "fluid/dlg_search.hpp"
+#include "dlg_search.h"
 
 void dlg_search::create_ex()
 {

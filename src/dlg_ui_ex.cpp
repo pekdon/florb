@@ -10,7 +10,7 @@
 #include "gpsdclient.hpp"
 #include "utils.hpp"
 #include "unit.hpp"
-#include "fluid/dlg_ui.hpp"
+#include "dlg_ui.h"
 #include "version.hpp"
 
 extern "C" 
@@ -186,6 +186,10 @@ void dlg_ui::create_ex(void)
     m_menuitem_gpsd_gotocursor->label(_("Go to cursor"));
     m_menuitem_gpsd_recordtrack->label(_("Record track"));
     m_menuitem_gpsd_lockcursor->label(_("Lock to cursor"));
+#ifndef HAVE_LIBGPS
+    m_menuitem_gpsd->deactivate();
+    m_btn_recordtrack->deactivate();
+#endif // HAVE_LIBGPS
     // Help
     m_menuitem_help->label(_("Help"));
     m_menuitem_help_about->label(_("About"));

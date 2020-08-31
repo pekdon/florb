@@ -1,6 +1,6 @@
 #include "utils.hpp"
 #include "unit.hpp"
-#include "fluid/dlg_eleprofile.hpp"
+#include "dlg_eleprofile.h"
 
 void dlg_eleprofile::create_ex()
 {

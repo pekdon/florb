@@ -1,3 +1,5 @@
+#include "config.h"
+
 #include "gpsdclient.hpp"
 #include "utils.hpp"
 
@@ -141,6 +143,7 @@ void florb::gpsdclient::fire_event_gpsd(void)
 
 void florb::gpsdclient::worker(void)
 {
+#ifdef HAVE_LIBGPS
     int rc;
     for (;;)
     {
@@ -200,6 +203,7 @@ void florb::gpsdclient::worker(void)
         gps_stream(&m_gpsdata, WATCH_DISABLE, NULL);
         gps_close(&m_gpsdata);
     }
+#endif // HAVE_LIBGPS
 
     // Update connection status
     connected(false);
@@ -209,6 +213,7 @@ void florb::gpsdclient::worker(void)
 bool florb::gpsdclient::handle_set()
 {
     bool ret = false;
+#ifdef HAVE_LIBGPS
 
     for (;;) {
 
@@ -255,7 +260,7 @@ bool florb::gpsdclient::handle_set()
 
         break;
     }
-
+#endif // HAVE_LIBGPS
     return ret;
 }
 

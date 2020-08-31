@@ -59,10 +59,7 @@ OBJS_CPP   = $(rootname $(find . -name *.cpp))
 OBJS_RES   = $(rootname $(find . -name *.res))
 OBJS       = $(set $(OBJS_FLUID) $(OBJS_CPP) $(OBJS_RES))
 
-# Find all translations
-TRANSLATIONS =
-    foreach(d => ..., $(find ./i18n/ -regex [a-z]{2\,2}_[A-Z]{2\,2}))
-		value $(d)
+TRANSLATIONS[] += de_DE
 
 # (Re-)generate version string (version.hpp) from repository information if present
 version.hpp: :exists: ../.git/HEAD :exists: ../.git/index gittags.txt :value: $(shell ./gittags.sh) version.txt ./mkversionhpp.sh
@@ -70,7 +67,7 @@ version.hpp: :exists: ../.git/HEAD :exists: ../.git/index gittags.txt :value: $(
 
 # Rule for generating CPP code from fluid sources
 %.cpp: %.fl
-    fluid -c -o $@ -h $(replacesuffixes .cpp, .hpp, $@) $<
+    fluid -c -o $@ -h $(replacesuffixes .cpp, .h, $@) $<
 
 # Rule for generating binary resources
 %.o: %.res
@@ -97,7 +94,7 @@ install:
 	#install ../LICENSE.txt $(RESOURCEDIR)
 	foreach(t => ..., $(basename $(TRANSLATIONS)))
 		mkdir -p $(LOCALEDIR)/$(t)/LC_MESSAGES/
-		install ./i18n/$(t)/florb.mo $(LOCALEDIR)/$(t)/LC_MESSAGES/
+		install ./i18n/$(t).mo $(LOCALEDIR)/$(t)/LC_MESSAGES/
 
 # clean target
 clean:
@@ -110,12 +107,12 @@ i18nupdate:
 		txt2po -P -i $(t) -o $(t).pot
 	msgcat -o i18n/all.pot $(addsuffix .res.pot, $(OBJS_RES)) i18n/$(PROGRAM).pot
 	foreach(t => ..., $(basename $(TRANSLATIONS)))
-	    if $(file-exists ./i18n/$(t)/$(PROGRAM).po)
-			msgmerge -U ./i18n/$(t)/$(PROGRAM).po i18n/all.pot
+	    if $(file-exists ./i18n/$(t).po)
+			msgmerge -U ./i18n/$(t).po i18n/all.pot
 	    else
-			msginit --no-translator -l $(t).utf8 -o ./i18n/$(t)/$(PROGRAM).po -i i18n/all.pot
-		
+			msginit --no-translator -l $(t).utf8 -o ./i18n/$(t).po -i i18n/all.pot
+
 # compile translations
 i18ncompile:
 	foreach(t => ..., $(basename $(TRANSLATIONS)))
-		msgfmt -c -o ./i18n/$(t)/florb.mo ./i18n/$(t)/$(PROGRAM).po
+		msgfmt -c -o ./i18n/$(t).mo ./i18n/$(t).po
