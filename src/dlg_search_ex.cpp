@@ -10,9 +10,6 @@ void dlg_search::create_ex()
 {
     m_markerid = std::numeric_limits<size_t>::max();
 
-    // Set the window icon
-    florb::utils::set_window_icon(m_window);
-
     try {
         m_downloader = new florb::downloader(1);
     } catch (std::runtime_error& e) {

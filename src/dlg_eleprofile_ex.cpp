@@ -6,9 +6,6 @@ void dlg_eleprofile::create_ex()
 {
     register_event_handler<dlg_eleprofile, wgt_eleprofile::event_mouse>(this, &dlg_eleprofile::profile_evt_mouse_ex);
     m_profile->add_event_listener(this);
-
-    // Set the window icon
-    florb::utils::set_window_icon(m_window); 
 }
 
 void dlg_eleprofile::destroy_ex()

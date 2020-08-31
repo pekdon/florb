@@ -69,10 +69,6 @@ version.hpp: :exists: ../.git/HEAD :exists: ../.git/index gittags.txt :value: $(
 %.cpp: %.fl
     fluid -c -o $@ -h $(replacesuffixes .cpp, .h, $@) $<
 
-# Rule for generating binary resources
-%.o: %.res
-    $(LD) -r -b binary -o $@ $<
-
 # Dependency scanner
 .SCANNER: %.o: %.cpp :value: $(digest-in-path-optional $(INCLUDES), $&)
     $(CXX) -MM $(addprefix -I, $(INCLUDES)) $<
@@ -91,7 +87,6 @@ install:
 	mkdir($(PREFIX)/bin/ -p)
 	install $(PROGRAM) $(PREFIX)/bin/
 	mkdir -p $(RESOURCEDIR)
-	#install ../LICENSE.txt $(RESOURCEDIR)
 	foreach(t => ..., $(basename $(TRANSLATIONS)))
 		mkdir -p $(LOCALEDIR)/$(t)/LC_MESSAGES/
 		install ./i18n/$(t).mo $(LOCALEDIR)/$(t)/LC_MESSAGES/

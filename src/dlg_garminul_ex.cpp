@@ -7,8 +7,6 @@
 
 void dlg_garminul::create_ex()
 {
-    // Set the window icon
-    florb::utils::set_window_icon(m_window); 
 }
 
 void dlg_garminul::show_ex()

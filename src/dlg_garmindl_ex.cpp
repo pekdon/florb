@@ -9,9 +9,6 @@ void dlg_garmindl::create_ex()
 {
     m_dlstatus = false;
 
-    // Set the window icon
-    florb::utils::set_window_icon(m_window); 
-
     m_progress_status->minimum(0);
     m_progress_status->maximum(99);
     m_progress_status->value(0);

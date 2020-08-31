@@ -7,9 +7,6 @@
 
 void dlg_txtdisp::create_ex()
 {
-    // Set the window icon
-    florb::utils::set_window_icon(m_window); 
-
     m_buf = new Fl_Text_Buffer();
     m_display->buffer(m_buf);
 }

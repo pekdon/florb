@@ -1,7 +1,6 @@
 #include <cmath>
 #include <sstream>
 #include <algorithm>
-#include <FL/x.H>
 #include <FL/fl_draw.H>
 #include <clocale>
 #include "utils.hpp"

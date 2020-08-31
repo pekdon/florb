@@ -1,7 +1,6 @@
 #include <cmath>
 #include <iostream>
 #include <FL/fl_draw.H>
-#include <FL/x.H>
 #include "settings.hpp"
 #include "wgt_map.hpp"
 #include "utils.hpp"

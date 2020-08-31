@@ -8,9 +8,6 @@
 
 void dlg_bulkdl::create_ex()
 {
-    // Set the window icon
-    florb::utils::set_window_icon(m_window); 
-
     // Don't use default window callback
     m_window->callback(cb_window_ex);
 

@@ -59,8 +59,6 @@ namespace florb
             static std::string filestem(const std::string& path);
             static std::string extension(const std::string& path);
             static void touch(const std::string& path);
-
-            static void set_window_icon(Fl_Window *w);
         private:
     };
 

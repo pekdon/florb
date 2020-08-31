@@ -5,8 +5,6 @@
 
 void dlg_editselection::create_ex()
 {
-    // Set the window icon
-    florb::utils::set_window_icon(m_window); 
 }
 
 void dlg_editselection::show_ex()

@@ -1,5 +1,8 @@
+#include "config.h"
+
 #include <sstream>
 #include <FL/Fl_File_Chooser.H>
+#include <FL/Fl_PNG_Image.H>
 #include <FL/fl_ask.H>
 #include <curl/curl.h>
 #include <locale.h>
@@ -12,17 +15,43 @@
 #include "unit.hpp"
 #include "dlg_ui.h"
 #include "version.hpp"
+#include "florb.png.h"
 
-extern "C" 
-{
-    extern char _binary_LICENSE_res_start;
-    extern char _binary_LICENSE_res_end;
-    extern char _binary_LICENSE_res_size;
+const std::string LICENSE_res("Copyright (c) 2014, Björn Rehm (bjoern@shugaa.de)\n" \
+"\n" \
+"Permission is hereby granted, free of charge, to any person obtaining a copy\n" \
+"of this software and associated documentation files (the \"Software\"), to deal\n" \
+"in the Software without restriction, including without limitation the rights\n" \
+"to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n" \
+"copies of the Software, and to permit persons to whom the Software is\n" \
+"furnished to do so, subject to the following conditions:\n" \
+"\n" \
+"The above copyright notice and this permission notice shall be included in\n" \
+"all copies or substantial portions of the Software.\n" \
+"\n" \
+"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n" \
+"IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n" \
+"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n" \
+"AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n" \
+"LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n" \
+"OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\n" \
+"THE SOFTWARE.\n");
 
-    extern char _binary_KEYS_res_start;
-    extern char _binary_KEYS_res_end;
-    extern char _binary_KEYS_res_size;
-}
+const std::string KEYS_res("Map motion:\n" \
+"\n" \
+"    * Use the arrow keys (UP / DOWN / RIGHT / LEFT) to move the map or\n" \
+"    * hold the right mouse button and drag\n" \
+"    * Use the + and - keys to zoom or\n" \
+"    * scroll to zoom\n" \
+"\n" \
+"Editing trackpoints:\n" \
+"\n" \
+"    * Left-click the map to define a new trackpoint\n" \
+"    * Hold the left mouse button on a trackpoint to drag it\n" \
+"    * Left-click any trackpoint to select it\n" \
+"    * Left-click and drag to select multiple trackpoints\n" \
+"    * Hit DEL to delete selected trackpoints\n" \
+"\n");
 
 static dlg_ui *ui;
 
@@ -43,6 +72,8 @@ int main_ex(int argc, char* argv[])
 
     // Start the application
     Fl::lock();
+    Fl_PNG_Image icon("florb.png", florb_png, sizeof(florb_png));
+    Fl_Window::default_icon(&icon);
     ui = new dlg_ui();
     ui->show(argc, argv);
 
@@ -160,9 +191,6 @@ void dlg_ui::create_ex(void)
     m_dlg_bulkdl = NULL;
     m_dlg_eleprofile = NULL;
 	
-    // Set the window icon
-    florb::utils::set_window_icon(m_window);
-
     // Fluid 1.3 does not gettext the menuitems, do it manually here
     // File
     m_menuitem_file->label(_("File"));
@@ -503,13 +531,12 @@ void dlg_ui::about_ex()
         m_dlg_txtdisp = new dlg_txtdisp;
 
     std::string v(std::string(_("Version: ")) + std::string(FLORB_PROGSTR));
-    std::string l(&_binary_LICENSE_res_start, (size_t)&_binary_LICENSE_res_size);
 
     m_dlg_txtdisp->title(_("About / License"));
     m_dlg_txtdisp->clear();
     m_dlg_txtdisp->append(v);
     m_dlg_txtdisp->append("\n\n");
-    m_dlg_txtdisp->append(florb::utils::str_split(l, "\n\n"), "\n\n", true); 
+    m_dlg_txtdisp->append(florb::utils::str_split(LICENSE_res, "\n\n"), "\n\n", true);
 
     m_dlg_txtdisp->show();
 }
@@ -519,11 +546,9 @@ void dlg_ui::usage_ex()
     if (!m_dlg_txtdisp)
         m_dlg_txtdisp = new dlg_txtdisp;
 
-    std::string u(&_binary_KEYS_res_start, (size_t)&_binary_KEYS_res_size);
-
     m_dlg_txtdisp->title(_("Usage"));
     m_dlg_txtdisp->clear();
-    m_dlg_txtdisp->append(florb::utils::str_split(u, "\n\n"), "\n\n", true);
+    m_dlg_txtdisp->append(florb::utils::str_split(KEYS_res, "\n\n"), "\n\n", true);
 
     m_dlg_txtdisp->show();
 }

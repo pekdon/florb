@@ -1,5 +1,4 @@
 #include <FL/fl_draw.H>
-#include <FL/x.H>
 #include "settings.hpp"
 #include "tracklayer.hpp"
 #include "wgt_eleprofile.hpp"

@@ -12,9 +12,6 @@
 
 void dlg_settings::create_ex()
 {
-    // Set the window icon
-    florb::utils::set_window_icon(m_window); 
-
     m_cfgui = florb::settings::get_instance()["ui"].as<florb::cfg_ui>();
     m_cfggpsd = florb::settings::get_instance()["gpsd"].as<florb::cfg_gpsd>();
     m_cfgtileservers = florb::settings::get_instance()["tileservers"].as< std::vector<florb::cfg_tileserver> >();

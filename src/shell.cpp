@@ -41,11 +41,11 @@ bool florb::shell::run(const std::string& cmd)
     int rc;
     for (;;) 
     {
-        rc = pipe2(m_pin, 0);
+        rc = pipe(m_pin);
         if (rc != 0)
             break;
 
-        rc = pipe2(m_pout, 0);
+        rc = pipe(m_pout);
         if (rc != 0)
             break;
 

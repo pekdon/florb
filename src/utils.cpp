@@ -9,11 +9,8 @@
 #include <cstdlib>
 #include <fstream>
 #include <cfenv>
-#include <X11/xpm.h>
 #include <iomanip>
-#include <FL/x.H>
 #include "utils.hpp"
-#include "florb.xpm"
 
 #define CLIPLEFT   (1)  // 0001
 #define CLIPRIGHT  (2)  // 0010
@@ -217,14 +214,6 @@ void florb::utils::touch(const std::string& path)
 {
     std::fstream f(path, std::ios::out|std::ios::app);
 	f.close();
-}
-
-void florb::utils::set_window_icon(Fl_Window *w)
-{
-    fl_open_display();
-    Pixmap p, mask;
-    XpmCreatePixmapFromData(fl_display, DefaultRootWindow(fl_display), const_cast<char**>(florb_xpm), &p, &mask, NULL);
-    w->icon((char *)p);
 }
 
 std::vector<std::string> florb::utils::str_split(const std::string& str, const std::string& delimiter)

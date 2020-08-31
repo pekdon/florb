@@ -1,7 +1,6 @@
 #ifndef GFX_HPP
 #define GFX_HPP
 
-#include <FL/x.H>
 #include <FL/Fl.H>
 #include <FL/fl_draw.H>
 #include <FL/Fl_PNG_Image.H>
