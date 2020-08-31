@@ -7,7 +7,14 @@ florb::settings::settings()
     m_cfgfile = florb::utils::appdir() + florb::utils::pathsep() + "config";
     florb::utils::mkdir(florb::utils::appdir());
 
-    m_rootnode = YAML::LoadFile(m_cfgfile);
+    if (florb::utils::exists(m_cfgfile))
+    {
+        m_rootnode = YAML::LoadFile(m_cfgfile);
+    }
+    else
+    {
+        m_rootnode = YAML::Node();
+    }
     defaults(m_cfgfile);
 }
 
