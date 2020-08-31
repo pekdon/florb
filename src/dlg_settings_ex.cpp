@@ -193,7 +193,9 @@ void dlg_settings::tab_ui_setup_ex()
     m_box_trackcolor->color(fl_rgb_color(m_cfgui.trackcolor().r(), m_cfgui.trackcolor().g(), m_cfgui.trackcolor().b()));
     m_box_selectioncolor->color(fl_rgb_color(m_cfgui.selectioncolor().r(), m_cfgui.selectioncolor().g(), m_cfgui.selectioncolor().b()));
     m_box_gpscursorcolor->color(fl_rgb_color(m_cfgui.gpscursorcolor().r(), m_cfgui.gpscursorcolor().g(), m_cfgui.gpscursorcolor().b()));
-    m_input_trackwidth->value(static_cast<std::ostringstream*>( &(std::ostringstream() << m_cfgui.tracklinewidth()) )->str().c_str());
+    std::ostringstream oss;
+    oss << m_cfgui.tracklinewidth();
+    m_input_trackwidth->value(oss.str().c_str());
 }
 
 void dlg_settings::tab_cache_setup_ex()
