@@ -1,10 +1,14 @@
 #ifndef GPSDCLIENT_HPP
 #define GPSDCLIENT_HPP
 
+#include "config.h"
+
 #include <string>
 #include <boost/thread.hpp>
 #include <boost/interprocess/sync/interprocess_mutex.hpp>
+#ifdef HAVE_LIBGPS
 #include <gps.h>
+#endif // HAVE_LIBGPS
 #include "event.hpp"
 #include "point.hpp"
 
@@ -43,7 +47,9 @@ namespace florb
 
             void fire_event_gpsd(void);
 
+#ifdef HAVE_LIBGPS
             struct gps_data_t m_gpsdata;
+#endif // HAVE_LIBGPS
             boost::interprocess::interprocess_mutex m_mutex; 
 
             std::string m_host;

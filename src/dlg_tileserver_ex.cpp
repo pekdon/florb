@@ -1,6 +1,6 @@
 #include "settings.hpp"
 #include "utils.hpp"
-#include "fluid/dlg_tileserver.hpp"
+#include "dlg_tileserver.h"
 #include <FL/fl_ask.H>
 
 void dlg_tileserver::create_ex()

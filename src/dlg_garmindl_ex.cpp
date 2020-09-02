@@ -3,7 +3,7 @@
 #include <iostream>
 #include "utils.hpp"
 #include "shell.hpp"
-#include "fluid/dlg_garmindl.hpp"
+#include "dlg_garmindl.h"
 
 void dlg_garmindl::create_ex()
 {

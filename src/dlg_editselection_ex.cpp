@@ -1,7 +1,7 @@
 #include <FL/fl_ask.H>
 #include "settings.hpp"
 #include "unit.hpp"
-#include "fluid/dlg_editselection.hpp"
+#include "dlg_editselection.h"
 
 void dlg_editselection::create_ex()
 {

@@ -3,7 +3,7 @@
 #include <iostream>
 #include "utils.hpp"
 #include "shell.hpp"
-#include "fluid/dlg_garminul.hpp"
+#include "dlg_garminul.h"
 
 void dlg_garminul::create_ex()
 {

@@ -11,7 +11,7 @@ decl {\#include <signal.h>} {private global
 decl {\#include <curl/curl.h>} {private global
 } 
 
-decl {\#include "dlg_ui.hpp"} {private global
+decl {\#include "dlg_ui.h"} {private global
 } 
 
 decl {\#include "wgt_map.hpp"} {public global
@@ -20,28 +20,28 @@ decl {\#include "wgt_map.hpp"} {public global
 decl {\#include "event.hpp"} {public global
 } 
 
-decl {\#include "dlg_search.hpp"} {public global
+decl {\#include "dlg_search.h"} {public global
 } 
 
-decl {\#include "dlg_garminul.hpp"} {public global
+decl {\#include "dlg_garminul.h"} {public global
 } 
 
-decl {\#include "dlg_garmindl.hpp"} {public global
+decl {\#include "dlg_garmindl.h"} {public global
 } 
 
-decl {\#include "dlg_editselection.hpp"} {public global
+decl {\#include "dlg_editselection.h"} {public global
 } 
 
-decl {\#include "dlg_settings.hpp"} {public global
+decl {\#include "dlg_settings.h"} {public global
 } 
 
-decl {\#include "dlg_txtdisp.hpp"} {public global
+decl {\#include "dlg_txtdisp.h"} {public global
 } 
 
-decl {\#include "dlg_bulkdl.hpp"} {public global
+decl {\#include "dlg_bulkdl.h"} {public global
 } 
 
-decl {\#include "dlg_eleprofile.hpp"} {public global
+decl {\#include "dlg_eleprofile.h"} {public global
 } 
 
 decl {int main_ex(int argc, char* argv[]);} {private global
@@ -396,7 +396,7 @@ ui->cb_choice_overlay_ex(widget);} {}
           Fl_Button m_btn_recordtrack {
             user_data this
             callback cb_btn_recordtrack
-            private tooltip {Record track} image {../res/audio-input-microphone.png} xywh {229 29 25 25} type Toggle box NO_BOX down_box THIN_DOWN_BOX
+            private tooltip {Record track} image {../res/audio-input-microphone.png} deimage {../res/audio-input-microphone-ina.png} xywh {229 29 25 25} type Toggle box NO_BOX down_box THIN_DOWN_BOX
           }
           Fl_Box {} {
             private xywh {254 29 5 25} box FLAT_BOX
